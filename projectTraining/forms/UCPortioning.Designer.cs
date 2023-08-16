@@ -31,18 +31,25 @@ namespace projectTraining.forms
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPortioning));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPortioning));
             this.gridView = new System.Windows.Forms.DataGridView();
+            this.pcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.portion = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblcname = new System.Windows.Forms.Label();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.btnLoad = new Guna.UI2.WinForms.Guna2Button();
             this.btnPay = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lbltransno = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ccode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,12 +57,7 @@ namespace projectTraining.forms
             this.cqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.portion = new System.Windows.Forms.DataGridViewImageColumn();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -113,8 +115,64 @@ namespace projectTraining.forms
             this.gridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellClick);
             this.gridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellContentDoubleClick);
             // 
+            // pcode
+            // 
+            this.pcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.pcode.HeaderText = "PCODE";
+            this.pcode.MinimumWidth = 6;
+            this.pcode.Name = "pcode";
+            this.pcode.ReadOnly = true;
+            // 
+            // pname
+            // 
+            this.pname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.pname.HeaderText = "Name";
+            this.pname.MinimumWidth = 6;
+            this.pname.Name = "pname";
+            this.pname.ReadOnly = true;
+            // 
+            // uom
+            // 
+            this.uom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.uom.HeaderText = "Unit of Measure";
+            this.uom.MinimumWidth = 6;
+            this.uom.Name = "uom";
+            this.uom.ReadOnly = true;
+            // 
+            // qty
+            // 
+            this.qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.qty.HeaderText = "Qty";
+            this.qty.MinimumWidth = 6;
+            this.qty.Name = "qty";
+            this.qty.ReadOnly = true;
+            this.qty.Visible = false;
+            this.qty.Width = 68;
+            // 
+            // price
+            // 
+            this.price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.price.HeaderText = "Price";
+            this.price.MinimumWidth = 6;
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            // 
+            // portion
+            // 
+            this.portion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.portion.HeaderText = "";
+            this.portion.Image = ((System.Drawing.Image)(resources.GetObject("portion.Image")));
+            this.portion.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.portion.MinimumWidth = 6;
+            this.portion.Name = "portion";
+            this.portion.ReadOnly = true;
+            this.portion.Width = 6;
+            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.lblcname);
+            this.panel1.Controls.Add(this.guna2Button1);
             this.panel1.Controls.Add(this.btnLoad);
             this.panel1.Controls.Add(this.btnPay);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -122,6 +180,33 @@ namespace projectTraining.forms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(238, 376);
             this.panel1.TabIndex = 6;
+            // 
+            // lblcname
+            // 
+            this.lblcname.AutoSize = true;
+            this.lblcname.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcname.ForeColor = System.Drawing.Color.Black;
+            this.lblcname.Location = new System.Drawing.Point(16, 158);
+            this.lblcname.Name = "lblcname";
+            this.lblcname.Size = new System.Drawing.Size(114, 34);
+            this.lblcname.TabIndex = 3;
+            this.lblcname.Text = "name here..";
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Button1.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.Location = new System.Drawing.Point(0, 90);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(238, 45);
+            this.guna2Button1.TabIndex = 2;
+            this.guna2Button1.Text = "ADD";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // btnLoad
             // 
@@ -160,7 +245,7 @@ namespace projectTraining.forms
             this.panel2.BackColor = System.Drawing.Color.Green;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.lbltransno);
-            this.panel2.Controls.Add(this.lblName);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(238, 320);
             this.panel2.Name = "panel2";
@@ -188,26 +273,17 @@ namespace projectTraining.forms
             this.lbltransno.TabIndex = 9;
             this.lbltransno.Text = "10001";
             // 
-            // lblName
+            // label3
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(43, 9);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(64, 34);
-            this.lblName.TabIndex = 8;
-            this.lblName.Text = "CART";
-            this.lblName.Click += new System.EventHandler(this.lblName_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.LightGray;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(238, 372);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1126, 324);
-            this.flowLayoutPanel1.TabIndex = 8;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(43, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 34);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "CART";
+            this.label3.Click += new System.EventHandler(this.lblName_Click);
             // 
             // dataGridView1
             // 
@@ -244,10 +320,9 @@ namespace projectTraining.forms
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(62)))), ((int)(((byte)(66)))));
-            this.dataGridView1.Location = new System.Drawing.Point(238, 372);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 217);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -255,7 +330,7 @@ namespace projectTraining.forms
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1126, 320);
+            this.dataGridView1.Size = new System.Drawing.Size(210, 91);
             this.dataGridView1.TabIndex = 9;
             // 
             // ccode
@@ -308,65 +383,21 @@ namespace projectTraining.forms
             this.total.ReadOnly = true;
             this.total.Width = 78;
             // 
-            // pcode
+            // flowLayoutPanel1
             // 
-            this.pcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.pcode.HeaderText = "PCODE";
-            this.pcode.MinimumWidth = 6;
-            this.pcode.Name = "pcode";
-            this.pcode.ReadOnly = true;
-            // 
-            // pname
-            // 
-            this.pname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.pname.HeaderText = "Name";
-            this.pname.MinimumWidth = 6;
-            this.pname.Name = "pname";
-            this.pname.ReadOnly = true;
-            // 
-            // uom
-            // 
-            this.uom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.uom.HeaderText = "Unit of Measure";
-            this.uom.MinimumWidth = 6;
-            this.uom.Name = "uom";
-            this.uom.ReadOnly = true;
-            // 
-            // qty
-            // 
-            this.qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.qty.HeaderText = "Qty";
-            this.qty.MinimumWidth = 6;
-            this.qty.Name = "qty";
-            this.qty.ReadOnly = true;
-            this.qty.Visible = false;
-            this.qty.Width = 67;
-            // 
-            // price
-            // 
-            this.price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.price.HeaderText = "Price";
-            this.price.MinimumWidth = 6;
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            // 
-            // portion
-            // 
-            this.portion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.portion.HeaderText = "";
-            this.portion.Image = ((System.Drawing.Image)(resources.GetObject("portion.Image")));
-            this.portion.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.portion.MinimumWidth = 6;
-            this.portion.Name = "portion";
-            this.portion.ReadOnly = true;
-            this.portion.Width = 6;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(238, 372);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1126, 318);
+            this.flowLayoutPanel1.TabIndex = 8;
             // 
             // UCPortioning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -376,6 +407,7 @@ namespace projectTraining.forms
             this.Load += new System.EventHandler(this.UCPortioning_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -388,8 +420,7 @@ namespace projectTraining.forms
         private System.Windows.Forms.DataGridView gridView;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lbltransno;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -407,5 +438,8 @@ namespace projectTraining.forms
         private System.Windows.Forms.DataGridViewTextBoxColumn qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.DataGridViewImageColumn portion;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        public System.Windows.Forms.Label lblcname;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

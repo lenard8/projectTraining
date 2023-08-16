@@ -17,37 +17,91 @@ namespace projectTraining.forms
             InitializeComponent();
         }
 
-        private string _pname;
-        private string _um;
-        private string _qty;
-        private string _price;
-
-        [Category("Custom Props")]
-        public string Title
+        public string CName
         {
-            get { return _pname; }
-            set { _pname = value; lblName.Text = value; }
+            get => lblName.Text;
+            set => lblName.Text = value;        
         }
 
-        [Category("Custom Props")]
-        public string Price
+        public string CPrice
         {
-            get { return _um; }
-            set { _um = value; lblOum.Text = value; }
+            get => lblprice.Text;
+            set => lblprice.Text = value;
+        }
+        public string CUom
+        {
+            get => lblOum.Text;
+            set => lblOum.Text = value;
+        }
+        public string _ctotal;
+
+        
+
+        private void UCCart_Load(object sender, EventArgs e)
+        {
+
         }
 
-        [Category("Custom Props")]
-        public string Qty
+        private void txtqty_TextChanged(object sender, EventArgs e)
         {
-            get { return _qty; }
-            set { _qty = value; txtqty.Text = value; }
+            if (float.TryParse(lblprice.Text, out float price) &&
+          int.TryParse(txtqty.Text, out int qty))
+            {
+                float total = price * qty;
+                lbltotal.Text = total.ToString();
+            }
+            else
+            {
+                lbltotal.Text = "Invalid Input";
+            }
         }
 
-        [Category("Custom Props")]
-        public string Pri
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
-            get { return _price; }
-            set { _price = value; lblprice.Text = value; }
+            if (float.TryParse(txtqty.Text, out float qtyValue))
+            {
+                qtyValue += 1; // Increment the quantity value
+
+                if (float.TryParse(lblprice.Text, out float priceValue))
+                {
+                    float total = priceValue * qtyValue;
+                    lbltotal.Text = total.ToString();
+                }
+                else
+                {
+                    lbltotal.Text = "Invalid Price";
+                }
+
+                txtqty.Text = qtyValue.ToString(); // Update the quantity textbox
+            }
+            else
+            {
+                lbltotal.Text = "Invalid Quantity";
+            }
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            if (float.TryParse(txtqty.Text, out float qtyValue))
+            {
+                qtyValue += -1; // Increment the quantity value
+
+                if (float.TryParse(lblprice.Text, out float priceValue))
+                {
+                    float total = priceValue * qtyValue;
+                    lbltotal.Text = total.ToString();
+                }
+                else
+                {
+                    lbltotal.Text = "Invalid Price";
+                }
+
+                txtqty.Text = qtyValue.ToString(); // Update the quantity textbox
+            }
+            else
+            {
+                lbltotal.Text = "Invalid Quantity";
+            }
         }
     }
 }

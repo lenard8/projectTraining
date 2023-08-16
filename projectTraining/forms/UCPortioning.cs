@@ -21,6 +21,7 @@ namespace projectTraining.forms
             InitializeComponent();
             connection = new MySqlConnection();
             connection.ConnectionString = db.GetConnection();
+
         }
 
         public void LoadData()
@@ -51,21 +52,21 @@ namespace projectTraining.forms
         private void gridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             frmPortioning pors = new frmPortioning();
-
+         
             int rowIndex = e.RowIndex;
             pors.txtcode.Text = gridView[0, rowIndex].Value.ToString();
             pors.txtproduct.Text = gridView[1, rowIndex].Value.ToString();
             pors.txtuom.Text = gridView[2, rowIndex].Value.ToString();
             pors.txtboxprice.Text = gridView[4, rowIndex].Value.ToString();
             pors.lbltransno.Text = lbltransno.Text;
-
-
+                        
             if (gridView.Columns[e.ColumnIndex].Name == "portion")
 
             {
                 pors.ShowDialog();
 
             }
+
         }
         void selectId()
         {
@@ -112,59 +113,64 @@ namespace projectTraining.forms
 
         private void gridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string _pcode, _product, _uom, _price, _qty, _ttotal = "";
-            if (e.RowIndex >= 0) // Check if a valid row is clicked
+            if (e.RowIndex >= 0 && e.RowIndex < gridView.Rows.Count)
             {
                 DataGridViewRow selectedRow = gridView.Rows[e.RowIndex];
 
-                // Assuming you want to display the data from the first column of the selected row
-                string selectedCellValue = selectedRow.Cells[0].Value.ToString();
-                string selectedCellValue2 = selectedRow.Cells[1].Value.ToString();
-                string selectedCellValue3 = selectedRow.Cells[2].Value.ToString();
-                string selectedCellValue4 = selectedRow.Cells[4].Value.ToString();
+                // Null checks for cell values
+                string selectedCellValue1 = selectedRow.Cells[1].Value?.ToString();
+                string selectedCellValue2 = selectedRow.Cells[2].Value?.ToString();
+                string selectedCellValue3 = selectedRow.Cells[4].Value?.ToString();
 
-                _pcode = selectedCellValue;
-                _product = selectedCellValue2;
-                _uom = selectedCellValue3;
-                _price = selectedCellValue4;
-                _qty = "1";
-
-                // Convert _qty and _price to numeric types
-                int quantity = int.Parse(_qty);
-                decimal price = decimal.Parse(_price);
-
-                bool productFound = false;
-
-                // Check if the product already exists in the grid
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (!string.IsNullOrEmpty(selectedCellValue1) &&
+                    !string.IsNullOrEmpty(selectedCellValue2) &&
+                    !string.IsNullOrEmpty(selectedCellValue3))
                 {
-                    if (row.Cells[0].Value.ToString() == _pcode)
+                    // Check if the data is already added to the flowLayoutPanel1
+                    bool isDataAlreadyAdded = IsDataAlreadyAdded(selectedCellValue1, selectedCellValue2, selectedCellValue3);
+
+                    if (!isDataAlreadyAdded)
                     {
-                        // Update the quantity
-                        int existingQuantity = int.Parse(row.Cells[3].Value.ToString());
-                        row.Cells[3].Value = (existingQuantity + quantity).ToString();
+                        UCCart cart = new UCCart();
+                        cart.lblName.Text = selectedCellValue1;
+                        cart.lblOum.Text = selectedCellValue2;
+                        cart.lblprice.Text = selectedCellValue3;
 
-                        // Update the total
-                        decimal existingTotal = decimal.Parse(row.Cells[5].Value.ToString());
-                        decimal newTotal = existingTotal + (quantity * price);
-                        row.Cells[5].Value = newTotal.ToString();
+                        // Perform data conversion and multiplication
+                        if (float.TryParse(selectedCellValue3, out float price) &&
+                            int.TryParse(cart.txtqty.Text, out int qty))
+                        {
+                            float total = price * qty;
+                            cart.lbltotal.Text = total.ToString();
+                        }
 
-                        productFound = true;
-                        break;
+                        cart.Dock = DockStyle.Top;
+                        flowLayoutPanel1.Controls.Add(cart);
                     }
                 }
+            }
+        }
 
-                if (!productFound)
+        private bool IsDataAlreadyAdded(string name, string oum, string price)
+        {
+            foreach (Control control in flowLayoutPanel1.Controls)
+            {
+                if (control is UCCart cartControl)
                 {
-                    // Calculate the total
-                    decimal total = quantity * price;
-                    _ttotal = total.ToString(); // Convert the total back to a string
-
-                    dataGridView1.Rows.Add(_pcode, _product, _uom, _qty, _price, _ttotal);
+                    if (cartControl.lblName.Text == name &&
+                        cartControl.lblOum.Text == oum &&
+                        cartControl.lblprice.Text == price)
+                    {
+                        MessageBox.Show("Data is already added");
+                        return true; // Data is already added
+                    }
                 }
             }
-
+            return false; // Data is not already added
         }
+
+
+
 
         private void btnPay_Click(object sender, EventArgs e)
         {
@@ -231,6 +237,26 @@ namespace projectTraining.forms
         {
             LoadData();
             dataGridView1.Rows.Clear();
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            addNew();
+        }
+        public projectTraining.forms.UCCart addNew()
+        {
+            projectTraining.forms.UCCart cart = new projectTraining.forms.UCCart();
+            cart.Dock = DockStyle.Top;
+            flowLayoutPanel1.Controls.Add(cart);
+
+            return cart;
+        }
+        private void LoadCart()
+        {
+            UCCart cart = new UCCart();
+
+            cart.Name = lblcname.Text;
+            addNew();
         }
     }
     }
